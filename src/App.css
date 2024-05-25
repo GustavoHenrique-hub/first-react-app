@@ -1,0 +1,97 @@
+@font-face {
+  font-family: "Nunito-Regular";
+  src: url("./assets/fonts/Nunito-Regular.ttf");
+}
+@font-face {
+  font-family: "Nunito-Bold";
+  src: url("./assets/fonts/Nunito-Bold.ttf");
+}
+@font-face {
+  font-family: "Nunito-ExtraBold";
+  src: url("./assets/fonts/Nunito-ExtraBold.ttf");
+}
+
+.App{
+  padding: 15px 15px;
+  background-image: url("./assets/background-image.png");
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image{
+  margin-top: -10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title{
+  font-size: 32px;
+  color: #FAFAFA;
+  font-family: "Nunito-Bold";
+  margin-top: 210px;
+}
+
+.titleColored{
+  color: #8FB2F5;
+}
+
+.textoHeader{
+  color: #7F7F98;
+  font-size: 20px;
+  font-family: 'Nunito-Regular';
+  margin-top: -20px;
+}
+
+.searchBar{
+  margin-top: 50px;
+}
+
+.inputText{
+  width: 504px;
+  height: 54px;
+  border: none;
+  background-color: #1E1E29;
+  border-radius: 8px;
+  padding-left: 15px;
+  color: #7F7F98;
+  font-family: 'Nunito-Bold';
+  outline: none;
+  box-shadow: 0 2px 4px 0 #000002;
+  font-size: 16px;
+}
+
+.btnSubmit{
+  opacity: 0;
+}
+
+.response{
+  padding: 12px 12px;
+  width: 250px;
+  height: auto;
+  background-color: #1E1E29;
+  margin-top: 100px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px 0 #000002;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.texto{
+  color: #7F7F98;
+  font-size: 20px;
+  font-family: 'Nunito-Regular';
+}
+
+
