@@ -1,0 +1,224 @@
+@font-face {
+  font-family: "Nunito-Regular";
+  src: url("../../assets/fonts/Nunito-Regular.ttf");
+}
+@font-face {
+  font-family: "Nunito-Bold";
+  src: url("../../assets/fonts/Nunito-Bold.ttf");
+}
+@font-face {
+  font-family: "Nunito-ExtraBold";
+  src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
+}
+
+/* Tela Toda */
+.dashboardApp {
+  padding: 15px 15px;
+  background-image: url("../../assets/background-image.png");
+  min-height: 768px;
+  min-width: 1366px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.dashboardAppLeft{
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboardAppRight{
+  display: flex;
+  flex-direction: column;
+}
+
+/* Card do Conteúdo principal*/
+.dashboardAll {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 664px;
+  height: 720px;
+  background-color: #16161f;
+  border-radius: 8px;
+}
+/* Topo do card */
+.dashboardSearchBar {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: row;
+}
+
+.btnHome {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  background-color: #1e1e29;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px 0 #000002;
+  border: none;
+}
+
+.btnHome:hover {
+  cursor: pointer;
+}
+
+.inputText {
+  width: 540px;
+  height: 54px;
+  border: none;
+  background-color: #1e1e29;
+  border-radius: 8px;
+  color: #7f7f98;
+  font-family: "Nunito-Bold";
+  outline: none;
+  box-shadow: 0 2px 4px 0 #000002;
+  font-size: 16px;
+  margin-left: 16px;
+}
+
+/* Fim do topo do card */
+
+/* Container de resposta da api */
+.responseContainer {
+  width: 632px;
+  height: 616px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px 0 #000002;
+  background-image: url("../../assets/dashboardPage/dashboard-background.png");
+  margin-top: 16px;
+  margin-bottom: 16px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.responseHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
+
+.responseText {
+  color: #fafafa;
+  font-size: 16px;
+  font-family: "Nunito-Regular";
+}
+
+.responseTitle {
+  color: #fafafa;
+  font-size: 20px;
+  font-family: "Nunito-Bold";
+}
+
+.responseFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 200px;
+}
+
+.responseFooterLeft {
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  gap: 10px;
+  margin-left: 30px;
+}
+
+.responseFooterTitle {
+  color: #ffffff;
+  font-size: 96px;
+  font-family: "Nunito-ExtraBold";
+}
+
+.responseFooterSubtitle {
+  color: #fafafa;
+  font-size: 20px;
+  font-family: "Nunito-Bold";
+  margin-top: -120px;
+}
+
+.responseFooterRight {
+  width: 250px;
+  height: 250px;
+  margin-top: 70px;
+}
+
+.responseTextDivider {
+  width: 8px;
+  height: 8px;
+  color: #7f7f98;
+  margin-left: 8px;
+  margin-bottom: 2px;
+  opacity: 0.7;
+}
+
+.responseTextWeather {
+  color: #7f7f98;
+  font-size: 20px;
+  font-family: "Nunito-Regular";
+}
+
+/* Fim do container de resposta da api */
+
+/* Details dashboard */
+
+.cardDetails{
+  width: 600px;
+  height: auto;
+  background-color: #16161f;
+  border-radius: 8px;
+  padding: 16px 28px;
+}
+
+.cardDetailsTitle{
+  color: #7F7F98;
+  font-size: 16px;
+  font-family: "Nunito-Bold";
+}
+
+.infoDetails{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 16px 40px;
+  margin-top: -20px;
+}
+
+.textLeft{
+  color: #BFBFD4;
+  font-size: 14px;
+  font-family: "Nunito-Bold";
+  margin-left: 20px;
+}
+
+.textRight{
+  color: #fafafa;
+  font-size: 20px;
+  font-family: "Nunito-Bold";
+}
+
+
+.infoDetailsInLeft{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.infoDetailsInRight{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.datailDivisor{
+  width: 525px;
+  color: #7F7F98;
+  margin-left: 40px;
+  margin-top: -20px;
+  opacity: 0.1234;
+}
