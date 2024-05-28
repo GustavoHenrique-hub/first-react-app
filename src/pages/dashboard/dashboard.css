@@ -169,7 +169,7 @@
 
 .cardDetails{
   width: 600px;
-  height: auto;
+  height: 380px;
   background-color: #16161f;
   border-radius: 8px;
   padding: 16px 28px;
@@ -222,3 +222,58 @@
   margin-top: -20px;
   opacity: 0.1234;
 }
+
+/* Fim details dashboard */
+
+/* Forecast dashboard */
+
+.forecastContainer{
+  width: 600px;
+  height: auto;
+  background-color: #16161f;
+  border-radius: 8px;
+  padding: 16px 28px;
+  margin-top: 16px;
+
+}
+
+.forecastContainerTitle{
+  color: #7F7F98;
+  font-size: 16px;
+  font-family: "Nunito-Bold";
+}
+
+.forecastContainerCards{
+  display: flex;
+  flex-direction: row;
+  height: 306;
+}
+
+.forecastContainerDays{
+  display: flex;
+  flex-direction: column;
+  padding: 3px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.forecastContainerDaysTitle{
+  color: #BFBFD4;
+  font-size: 14px;
+  font-family: "Nunito-Bold";
+}
+
+.forecastContainerDaysText{
+  color: #FAFAFA;
+  font-size: 14px;
+  font-family: "Nunito-Bold";
+}
+
+.forecastContainerDaysTextColored{
+  color: #7F7F98;
+  font-size: 14px;
+  font-family: "Nunito-Bold";
+}
+
+  
