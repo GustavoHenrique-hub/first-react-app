@@ -63,12 +63,17 @@ function Dashboard() {
     let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${stateCity}&lang=pt_br&appid=${key}&units=metric&`;
     let geocoderUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${stateCity}&lang=pt_br&appid=${key}`;
     let weatherDetailsUrl = `http://api.weatherapi.com/v1/forecast.json?key=${detailKey}&q=${stateCity}`;
+    let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${stateCity}&lang=pt_br&appid=${key}&units=metric`
+    
+    const currentDateVar = new Date();
+
+    const currentDateFor = `${currentDateVar.getYear()}-${currentDateVar.getMonth()}-${currentDateVar.getDay()}`
+
     fetch(weatherUrl)
-      .then((resposta) => {
-        return resposta.json();
+      .then((response) => {
+        return response.json();
       })
       .then((dadoTemperatura) => {
-        console.log(dadoTemperatura);
         setStateTemperatura(dadoTemperatura.main.temp);
         setStateTempMax(dadoTemperatura.main.temp_max);
         setStateTempMin(dadoTemperatura.main.temp_min);
@@ -76,11 +81,10 @@ function Dashboard() {
       });
 
     fetch(geocoderUrl)
-      .then((resp) => {
-        return resp.json();
+      .then((response) => {
+        return response.json();
       })
       .then((dataLocalization) => {
-        console.log(dataLocalization);
         setCountry(dataLocalization[0].country);
         setCity(dataLocalization[0].name);
       });
@@ -90,7 +94,6 @@ function Dashboard() {
         return response.json();
       })
       .then((detailInfo) => {
-        console.log(detailInfo);
         setStateFeelsLike(detailInfo.current.feelslike_c);
         setStateChanceOfRain(
           detailInfo.forecast.forecastday[0].day.daily_chance_of_rain
@@ -99,6 +102,21 @@ function Dashboard() {
         setStateUvIndex(detailInfo.current.uv);
         setStateWindKm(detailInfo.current.wind_kph);
       });
+
+    fetch(forecastUrl)
+      .then((response) => {
+        return response.json();
+      })
+      .then((forecastData) => {
+        console.log("Chegou");
+        for(let i = 7; i < 40; i+=8){
+          
+          if(forecastData.list[i].dt_txt == forecastData.list[i].dt_txt){
+            console.log(forecastData.list[i].dt_txt)
+          }
+        };
+        
+      })
 
     setStateCity("");
   };
@@ -121,12 +139,12 @@ function Dashboard() {
     return nextDays;
   };
 
-  const displayedWeather = getWeatherForNextDays (daysToShow);
+  const displayedWeather = getWeatherForNextDays(daysToShow);
 
   const getTime = () => {
     let timeNow = new Date();
-    let hour = timeNow.getUTCHours();
-    let minute = timeNow.getUTCMinutes();
+    let hour = timeNow.getHours();
+    let minute = timeNow.getMinutes();
 
     hour = hour % 24;
     if (hour < 10) {
@@ -359,10 +377,19 @@ function Dashboard() {
                     <img src="https://placehold.co/56x56" />
                   </div>
 
-                  <p className="forecastContainerDaysTitle">Temporal</p>
+                  <p className="forecastContainerDaysTitle">
+                    {stateWeather != null ? `${stateWeather}` : " - "}
+                  </p>
                   <p className="forecastContainerDaysText">
-                    32°c
-                    <a className="forecastContainerDaysTextColored"> 26°c</a>
+                    {Number.isNaN(parseInt(stateTempMax))
+                      ? " - "
+                      : `${parseInt(stateTempMax)}°c`}
+                    <a className="forecastContainerDaysTextColored">
+                      {" "}
+                      {Number.isNaN(parseInt(stateTempMin))
+                        ? " - "
+                        : ` ${parseInt(stateTempMin)}°c`}
+                    </a>
                   </p>
                 </div>
               );
