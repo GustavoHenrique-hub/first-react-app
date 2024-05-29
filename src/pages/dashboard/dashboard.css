@@ -252,7 +252,7 @@
 .forecastContainerDays{
   display: flex;
   flex-direction: column;
-  padding: 3px;
+  padding: 2.7px;
   align-items: center;
   justify-content: space-between;
   width: 100%;
