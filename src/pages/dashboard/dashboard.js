@@ -43,31 +43,38 @@ function Dashboard() {
   const [stateTemperatura, setStateTemperatura] = useState();
   const [stateTempMax, setStateTempMax] = useState();
   const [stateTempMin, setStateTempMin] = useState();
-  const [stateWeather, setStateWeather] = useState();
-  const [stateCity, setStateCity] = useState();
-  const [stateTime, setStateTime] = useState();
+  const [stateWeather, setStateWeather] = useState("");
+
+  const [stateCity, setStateCity] = useState("");
+  const [stateTime, setStateTime] = useState("");
+
   const [stateChanceOfRain, setStateChanceOfRain] = useState();
   const [stateFeelsLike, setStateFeelsLike] = useState();
   const [stateHumidity, setStateHumidity] = useState();
   const [stateUvIndex, setStateUvIndex] = useState();
   const [stateWindKm, setStateWindKm] = useState();
 
-  const [city, setCity] = useState();
-  const [country, setCountry] = useState();
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+
+  const [weatherForecast, setWeatherForecast] = useState("");
+  const [forecastTempMax, setForecastTempMax] = useState();
+  const [forecastTempMin, setForecastTempMin] = useState();
+  const [forecastIcons, setForecastIcons] = useState();
 
   const [daysToShow, setDaysToShow] = useState(5);
 
   //https://api.openweathermap.org/data/2.5/forecast?q=${stateCity}&lang=pt_br&appid=${key}&units=metric&cnt=40
 
+  const foreCast = [];
+  const foreCastData = []
+
   const callApi = () => {
     let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${stateCity}&lang=pt_br&appid=${key}&units=metric&`;
     let geocoderUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${stateCity}&lang=pt_br&appid=${key}`;
     let weatherDetailsUrl = `http://api.weatherapi.com/v1/forecast.json?key=${detailKey}&q=${stateCity}`;
-    let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${stateCity}&lang=pt_br&appid=${key}&units=metric`
-    
-    const currentDateVar = new Date();
+    let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${stateCity}&lang=pt_br&appid=${key}&units=metric`;
 
-    const currentDateFor = `${currentDateVar.getYear()}-${currentDateVar.getMonth()}-${currentDateVar.getDay()}`
 
     fetch(weatherUrl)
       .then((response) => {
@@ -109,16 +116,19 @@ function Dashboard() {
       })
       .then((forecastData) => {
         console.log("Chegou");
-        for(let i = 7; i < 40; i+=8){
-          
-          if(forecastData.list[i].dt_txt == forecastData.list[i].dt_txt){
-            console.log(forecastData.list[i].dt_txt)
-          }
-        };
         
-      })
+        for (let i = 7; i < 40; i += 8) {
+          console.log(forecastData.list[i].weather[0].icon);
+          setWeatherForecast(forecastData.list[i].weather[0].main)
+          setForecastIcons(forecastData.list[i].weather[0].icon)
+          setForecastTempMax(forecastData.list[i].main.temp_max)
+          setForecastTempMin(forecastData.list[i].main.temp_min)
+        }
+        
+      });
 
     setStateCity("");
+    return foreCast;
   };
 
   let now = new Date();
@@ -367,33 +377,33 @@ function Dashboard() {
         <div className="forecastContainer">
           <p className="forecastContainerTitle">Previsão para 5 dias</p>
           <div className="forecastContainerCards">
-            {displayedWeather.map((dias, index) => {
-              return (
+            {displayedWeather.map((dias, index) => (
+              
                 <div className="forecastContainerDays">
                   <p key={index} className="forecastContainerDaysTitle">
                     {dias}
                   </p>
+
                   <div className="forecastContainerImage">
                     <img src="https://placehold.co/56x56" />
                   </div>
-
                   <p className="forecastContainerDaysTitle">
-                    {stateWeather != null ? `${stateWeather}` : " - "}
+                    {foreCast.weather != null ? `${foreCast.weather}` : " - "}
                   </p>
                   <p className="forecastContainerDaysText">
-                    {Number.isNaN(parseInt(stateTempMax))
+                    {Number.isNaN(parseInt(forecastTempMax))
                       ? " - "
-                      : `${parseInt(stateTempMax)}°c`}
+                      : `${parseInt(forecastTempMax)}°c`}
                     <a className="forecastContainerDaysTextColored">
                       {" "}
-                      {Number.isNaN(parseInt(stateTempMin))
+                      {Number.isNaN(parseInt(forecastTempMin))
                         ? " - "
-                        : ` ${parseInt(stateTempMin)}°c`}
+                        : ` ${parseInt(forecastTempMin)}°c`}
                     </a>
                   </p>
                 </div>
-              );
-            })}
+              
+            ))}
           </div>
         </div>
       </div>

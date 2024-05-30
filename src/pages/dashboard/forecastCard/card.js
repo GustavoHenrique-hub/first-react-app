@@ -1,5 +1,5 @@
 function Card({itens}){
-    {itens.length >= 0 && itens.length < 5 ? (
+    { 
         itens.map((values, index) => {
           return (
             <div className="forecastContainerDays">
@@ -18,9 +18,7 @@ function Card({itens}){
             </div>
           );
         })
-      ) : (
-        <p className="forecastContainerDaysTitle">Erro</p>
-      )}
+      }
 }
 
 export default Card;
