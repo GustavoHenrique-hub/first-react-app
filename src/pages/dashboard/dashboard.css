@@ -229,7 +229,7 @@
 
 .forecastContainer{
   width: 600px;
-  height: auto;
+  height: 260px;
   background-color: #16161f;
   border-radius: 8px;
   padding: 16px 28px;
@@ -246,7 +246,7 @@
 .forecastContainerCards{
   display: flex;
   flex-direction: row;
-  height: 306;
+  height: auto;
 }
 
 .forecastContainerDays{
@@ -276,4 +276,6 @@
   font-family: "Nunito-Bold";
 }
 
-  
+.imagePlaceholder{
+  opacity: 0;
+}  
