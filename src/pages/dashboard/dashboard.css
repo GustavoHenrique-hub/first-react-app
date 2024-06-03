@@ -88,7 +88,7 @@
   height: 616px;
   border-radius: 12px;
   box-shadow: 0 2px 4px 0 #000002;
-  background-image: url("../../assets/dashboardPage/dashboard-background.png");
+  background-size: cover;
   margin-top: 16px;
   margin-bottom: 16px;
   margin-left: 16px;
@@ -143,9 +143,16 @@
 }
 
 .responseFooterRight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.responseFooterImage{
   width: 250px;
   height: 250px;
-  margin-top: 70px;
+  margin-top: 60px;
+  margin-right: 40px;
 }
 
 .responseTextDivider {
