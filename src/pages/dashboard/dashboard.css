@@ -15,8 +15,8 @@
 .dashboardApp {
   padding: 15px 15px;
   background-image: url("../../assets/background-image.png");
-  min-height: 768px;
-  min-width: 1366px;
+  min-height: 100vh;
+  min-width: 100vh;
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -25,11 +25,15 @@
 .dashboardAppLeft{
   display: flex;
   flex-direction: column;
+  width: auto;
+  height: auto;
 }
 
 .dashboardAppRight{
   display: flex;
   flex-direction: column;
+  width: auto;
+  height: auto;
 }
 
 /* Card do Conteúdo principal*/
@@ -286,3 +290,33 @@
 .imagePlaceholder{
   opacity: 0;
 }  
+
+@media (max-width: 1368px) {
+  .dashboardApp{
+    min-width: 100vh;
+    min-height: 100vh;
+  }
+
+  .dashboardAll{
+    width: 500px;
+    height: 500px;
+  }
+  .inputText{
+    width: 370px;
+    height: 54px;
+  }
+
+  .responseContainer{
+    width: 462px;
+    height: 400px;
+  }
+
+  .responseFooter{
+    margin-top: 0px;
+  }
+  
+  .responseFooterRight{
+    margin-top: 30px;
+    margin-right: -70px;
+  }
+}
