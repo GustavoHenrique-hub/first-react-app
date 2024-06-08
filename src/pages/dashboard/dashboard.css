@@ -11,29 +11,30 @@
   src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
 }
 
+
 /* Tela Toda */
 .dashboardApp {
   padding: 15px 15px;
   background-image: url("../../assets/background-image.png");
   min-height: 100vh;
-  min-width: 100vh;
+  min-width: 100vw;
   display: flex;
   flex-direction: row;
-  gap: 10px;
 }
 
 .dashboardAppLeft{
   display: flex;
   flex-direction: column;
-  width: auto;
-  height: auto;
+  width: 100vw;
+  height: 97vh;
 }
 
 .dashboardAppRight{
   display: flex;
   flex-direction: column;
-  width: auto;
-  height: auto;
+  width: 100vw;
+  height: 97vh;
+  margin-left: 0.6%;
 }
 
 /* Card do Conteúdo principal*/
@@ -42,8 +43,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 664px;
-  height: 720px;
+  width: 100%;
+  height: 100%;
   background-color: #16161f;
   border-radius: 8px;
 }
@@ -52,6 +53,8 @@
   margin-top: 16px;
   display: flex;
   flex-direction: row;
+  width: 100%;
+  gap: 10px;
 }
 
 .btnHome {
@@ -64,6 +67,7 @@
   align-items: center;
   box-shadow: 0 2px 4px 0 #000002;
   border: none;
+  margin-left: 2%;
 }
 
 .btnHome:hover {
@@ -71,7 +75,7 @@
 }
 
 .inputText {
-  width: 540px;
+  width: 86.7%;
   height: 54px;
   border: none;
   background-color: #1e1e29;
@@ -81,15 +85,14 @@
   outline: none;
   box-shadow: 0 2px 4px 0 #000002;
   font-size: 16px;
-  margin-left: 16px;
 }
 
 /* Fim do topo do card */
 
 /* Container de resposta da api */
 .responseContainer {
-  width: 632px;
-  height: 616px;
+  width: 96%;
+  height: 87%;
   border-radius: 12px;
   box-shadow: 0 2px 4px 0 #000002;
   background-size: cover;
@@ -122,7 +125,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 200px;
+  margin-top: 20%;
 }
 
 .responseFooterLeft {
@@ -130,7 +133,8 @@
   flex-direction: column;
   height: 250px;
   gap: 10px;
-  margin-left: 30px;
+  margin-left: 10%;
+  margin-top: 20%;
 }
 
 .responseFooterTitle {
@@ -155,8 +159,8 @@
 .responseFooterImage{
   width: 250px;
   height: 250px;
-  margin-top: 60px;
-  margin-right: 40px;
+  margin-top: 100%;
+  margin-right: 40%;
 }
 
 .responseTextDivider {
@@ -169,7 +173,7 @@
 }
 
 .responseTextWeather {
-  color: #7f7f98;
+  color: #fafafa;
   font-size: 20px;
   font-family: "Nunito-Regular";
 }
@@ -179,11 +183,12 @@
 /* Details dashboard */
 
 .cardDetails{
-  width: 600px;
-  height: 380px;
+  width: 90%;
+  height: 100vh;
   background-color: #16161f;
   border-radius: 8px;
   padding: 16px 28px;
+  gap: 20px;
 }
 
 .cardDetailsTitle{
@@ -227,7 +232,7 @@
 }
 
 .datailDivisor{
-  width: 525px;
+  width: 90%;
   color: #7F7F98;
   margin-left: 40px;
   margin-top: -20px;
@@ -239,13 +244,12 @@
 /* Forecast dashboard */
 
 .forecastContainer{
-  width: 600px;
-  height: 260px;
+  width: 90%;
+  height: 100vh;
   background-color: #16161f;
   border-radius: 8px;
   padding: 16px 28px;
-  margin-top: 16px;
-
+  margin-top: 1%;
 }
 
 .forecastContainerTitle{
@@ -263,10 +267,11 @@
 .forecastContainerDays{
   display: flex;
   flex-direction: column;
-  padding: 2.7px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  padding: 2.7px;
   width: 100%;
+  margin-top: 6%;
 }
 
 .forecastContainerDaysTitle{
@@ -291,32 +296,3 @@
   opacity: 0;
 }  
 
-@media (max-width: 1368px) {
-  .dashboardApp{
-    min-width: 100vh;
-    min-height: 100vh;
-  }
-
-  .dashboardAll{
-    width: 500px;
-    height: 500px;
-  }
-  .inputText{
-    width: 370px;
-    height: 54px;
-  }
-
-  .responseContainer{
-    width: 462px;
-    height: 400px;
-  }
-
-  .responseFooter{
-    margin-top: 0px;
-  }
-  
-  .responseFooterRight{
-    margin-top: 30px;
-    margin-right: -70px;
-  }
-}

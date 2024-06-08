@@ -1,6 +1,8 @@
 import "./dashboard.css";
 import { useOnKeyPress } from "../../hooks/useOnKeyPress";
 import { useState, useEffect } from "react";
+import ScrollLock from "react-scrolllock";
+
 import TypeWeatherLogo from "../../assets/dashboardPage/btn-logo.svg";
 import Divider from "../../assets/dashboardPage/divider.svg";
 
@@ -138,7 +140,7 @@ function Dashboard() {
         for (let i = 7; i < 40; i += 8) {
           tempArray.push({
             main: forecastData.list[i].weather[0].main,
-            icon: `https://openweathermap.org/img/wn/${forecastData.list[i].weather[0].icon}.png`,
+            icon: `https://openweathermap.org/img/wn/${forecastData.list[i].weather[0].icon}@2x.png`,
             temp_max: forecastData.list[i].main.temp_max,
             temp_min: forecastData.list[i].main.temp_min,
           });
@@ -151,9 +153,8 @@ function Dashboard() {
   };
 
   const now = new Date();
-  const currentDate = `${days[now.getUTCDay()]}, ${now.getUTCDate()} de ${
-    months[now.getUTCMonth()]
-  } ${now.getUTCFullYear()}`;
+  const currentDate = `${days[now.getUTCDay()]}, ${now.getUTCDate()} de ${months[now.getUTCMonth()]
+    } ${now.getUTCFullYear()}`;
 
   useEffect(() => {
     const hoursNow = new Date();
@@ -246,232 +247,234 @@ function Dashboard() {
   useOnKeyPress(callApi, "Enter");
 
   return (
-    <div className="dashboardApp">
-      {/* Parte da esquerda da tela */}
-      <div className="dashboardAppLeft">
-        {/* Card das informações gerais */}
-        <div className="dashboardAll">
-          {/* Header do card das informações gerais */}
-          <div className="dashboardSearchBar">
-            <button className="btnHome">
-              <img src={TypeWeatherLogo} alt="Weather Logo" />
-            </button>
-            <input
-              className="inputText"
-              type="text"
-              placeholder="Buscar Local"
-              value={stateCity}
-              onChange={(event) => {
-                setStateCity(event.target.value);
-              }}
-            />
-          </div>
-
-          {/* Container de resposta da api */}
-          <div
-            className="responseContainer"
-            style={{ backgroundImage: `url(${backgroundImage})` }}
-          >
-            {/* Header do container de resposta da api */}
-            <div className="responseHeader">
-              <p className="responseTitle">
-                {city && country ? `${city}, ${country}` : " "}
-                <br />
-                <span className="responseText">{currentDate}</span>
-              </p>
-              <div className="responseHour">
-                <p className="responseTitle">{stateTime}</p>
-              </div>
+    <ScrollLock>
+      <div className="dashboardApp">
+        {/* Parte da esquerda da tela */}
+        <div className="dashboardAppLeft">
+          {/* Card das informações gerais */}
+          <div className="dashboardAll">
+            {/* Header do card das informações gerais */}
+            <div className="dashboardSearchBar">
+              <button className="btnHome">
+                <img src={TypeWeatherLogo} alt="Weather Logo" />
+              </button>
+              <input
+                className="inputText"
+                type="text"
+                placeholder="Buscar Local"
+                value={stateCity}
+                onChange={(event) => {
+                  setStateCity(event.target.value);
+                }}
+              />
             </div>
 
-            {/* Footer do container de resposta da api */}
-            <div className="responseFooter">
-              <div className="responseFooterLeft">
-                <p className="responseFooterTitle">
-                  {!Number.isNaN(parseInt(stateTemperatura))
-                    ? `${parseInt(stateTemperatura)}°c`
-                    : " "}
+            {/* Container de resposta da api */}
+            <div
+              className="responseContainer"
+              style={{ backgroundImage: `url(${backgroundImage})` }}
+            >
+              {/* Header do container de resposta da api */}
+              <div className="responseHeader">
+                <p className="responseTitle">
+                  {city && country ? `${city}, ${country}` : " "}
+                  <br />
+                  <span className="responseText">{currentDate}</span>
                 </p>
-                <p className="responseFooterSubtitle">
-                  {!Number.isNaN(parseInt(stateTempMax)) &&
-                  !Number.isNaN(parseInt(stateTempMin))
-                    ? `${parseInt(stateTempMax)}°c / ${parseInt(
+                <div className="responseHour">
+                  <p className="responseTitle">{stateTime}</p>
+                </div>
+              </div>
+
+              {/* Footer do container de resposta da api */}
+              <div className="responseFooter">
+                <div className="responseFooterLeft">
+                  <p className="responseFooterTitle">
+                    {!Number.isNaN(parseInt(stateTemperatura))
+                      ? `${parseInt(stateTemperatura)}°c`
+                      : " "}
+                  </p>
+                  <p className="responseFooterSubtitle">
+                    {!Number.isNaN(parseInt(stateTempMax)) &&
+                      !Number.isNaN(parseInt(stateTempMin))
+                      ? `${parseInt(stateTempMax)}°c / ${parseInt(
                         stateTempMin
                       )}°c`
-                    : " "}
-                  {!Number.isNaN(parseInt(stateTemperatura)) ? (
-                    <img
-                      className="responseTextDivider"
-                      src={Divider}
-                      alt="Divider"
-                    />
-                  ) : (
-                    " "
-                  )}
-                  <span className="responseTextWeather">
-                    {city && stateWeather ? ` ${stateWeather}` : " "}
-                  </span>
-                </p>
-              </div>
-              <div className="responseFooterRight">
-                <div className="responseFooterImage">
-                {iconsCondition !== undefined ? (
-                  <img src={iconsCondition} alt="Weather Logo" />
-                ) : (
-                  <img
-                    src="https://placehold.co/250x250"
-                    className="imagePlaceholder"
-                    alt="Weather Logo"
-                  />
-                )}
+                      : " "}
+                    {!Number.isNaN(parseInt(stateTemperatura)) ? (
+                      <img
+                        className="responseTextDivider"
+                        src={Divider}
+                        alt="Divider"
+                      />
+                    ) : (
+                      " "
+                    )}
+                    <span className="responseTextWeather">
+                      {city && stateWeather ? ` ${stateWeather}` : " "}
+                    </span>
+                  </p>
+                </div>
+                <div className="responseFooterRight">
+                  <div className="responseFooterImage">
+                    {iconsCondition !== undefined ? (
+                      <img src={iconsCondition} alt="Weather Logo" />
+                    ) : (
+                      <img
+                        src="https://placehold.co/200"
+                        className="imagePlaceholder"
+                        alt="Weather Logo"
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Parte da direita da tela */}
-      <div className="dashboardAppRight">
-        {/* Container de detalhes da resposta da api */}
-        <div className="cardDetails">
-          <p className="cardDetailsTitle">Detalhes do clima hoje</p>
+        {/* Parte da direita da tela */}
+        <div className="dashboardAppRight">
+          {/* Container de detalhes da resposta da api */}
+          <div className="cardDetails">
+            <p className="cardDetailsTitle">Detalhes do clima hoje</p>
 
-          {/* Sensação Térmica */}
-          <div className="infoDetails">
-            <div className="infoDetailsInLeft">
-              <div className="imgDetail">
-                <img src={Termometer} alt="Termometer" />
-              </div>
-              <p className="textLeft">Sensação Térmica</p>
-            </div>
-            <div className="infoDetailsInRight">
-              <p className="textRight">
-                {!Number.isNaN(parseInt(stateFeelsLike))
-                  ? `${parseInt(stateFeelsLike)}°c`
-                  : " - "}
-              </p>
-            </div>
-          </div>
-
-          <hr className="datailDivisor" />
-
-          {/* Probabilidade de chuva */}
-          <div className="infoDetails">
-            <div className="infoDetailsInLeft">
-              <div className="imgDetail">
-                <img src={Rain} alt="Rain" />
-              </div>
-              <p className="textLeft">Probabilidade de chuva</p>
-            </div>
-            <div className="infoDetailsInRight">
-              <p className="textRight">
-                {stateChanceOfRain !== undefined
-                  ? `${parseInt(stateChanceOfRain)}%`
-                  : " - "}
-              </p>
-            </div>
-          </div>
-
-          <hr className="datailDivisor" />
-
-          {/* Velocidade do vento */}
-          <div className="infoDetails">
-            <div className="infoDetailsInLeft">
-              <div className="imgDetail">
-                <img src={Wind} alt="Wind" />
-              </div>
-              <p className="textLeft">Velocidade do vento</p>
-            </div>
-            <div className="infoDetailsInRight">
-              <p className="textRight">
-                {stateWindKm !== undefined ? `${stateWindKm} km/h` : " - "}
-              </p>
-            </div>
-          </div>
-
-          <hr className="datailDivisor" />
-
-          {/* Umidade do ar */}
-          <div className="infoDetails">
-            <div className="infoDetailsInLeft">
-              <div className="imgDetail">
-                <img src={Drop} alt="Drop" />
-              </div>
-              <p className="textLeft">Umidade do ar</p>
-            </div>
-            <div className="infoDetailsInRight">
-              <p className="textRight">
-                {!Number.isNaN(parseInt(stateHumidity))
-                  ? `${stateHumidity}%`
-                  : " - "}
-              </p>
-            </div>
-          </div>
-
-          <hr className="datailDivisor" />
-
-          {/* Índice UV */}
-          <div className="infoDetails">
-            <div className="infoDetailsInLeft">
-              <div className="imgDetail">
-                <img src={Sun} alt="Sun" />
-              </div>
-              <p className="textLeft">Índice UV</p>
-            </div>
-            <div className="infoDetailsInRight">
-              <p className="textRight">
-                {!Number.isNaN(parseInt(stateUvIndex))
-                  ? `${stateUvIndex}`
-                  : " - "}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Container de previsão do tempo */}
-        <div className="forecastContainer">
-          <div className="forecastContainerTitle">
-            <p>Previsão para {daysToShow} dias</p>
-          </div>
-          <div className="forecastContainerCards">
-            {displayedWeather.map((day, index) => (
-              <div key={index} className="forecastContainerDays">
-                <p className="forecastContainerDaysTitle">{day}</p>
-                <div className="forecastContainerImage">
-                  {forecastArray[index] ? (
-                    <img src={forecastArray[index].icon} alt="Weather Icon" />
-                  ) : (
-                    <img
-                      src="https://placehold.co/56x56"
-                      className="imagePlaceholder"
-                      alt="Weather Icon"
-                    />
-                  )}
+            {/* Sensação Térmica */}
+            <div className="infoDetails">
+              <div className="infoDetailsInLeft">
+                <div className="imgDetail">
+                  <img src={Termometer} alt="Termometer" />
                 </div>
-                <p className="forecastContainerDaysTitle">
-                  {forecastArray[index] && forecastArray[index].main
-                    ? forecastArray[index].main
+                <p className="textLeft">Sensação Térmica</p>
+              </div>
+              <div className="infoDetailsInRight">
+                <p className="textRight">
+                  {!Number.isNaN(parseInt(stateFeelsLike))
+                    ? `${parseInt(stateFeelsLike)}°c`
                     : " - "}
                 </p>
-                <p className="forecastContainerDaysText">
-                  {forecastArray[index] &&
-                  forecastArray[index].temp_max !== undefined
-                    ? `${parseInt(forecastArray[index].temp_max)}°c`
+              </div>
+            </div>
+
+            <hr className="datailDivisor" />
+
+            {/* Probabilidade de chuva */}
+            <div className="infoDetails">
+              <div className="infoDetailsInLeft">
+                <div className="imgDetail">
+                  <img src={Rain} alt="Rain" />
+                </div>
+                <p className="textLeft">Probabilidade de chuva</p>
+              </div>
+              <div className="infoDetailsInRight">
+                <p className="textRight">
+                  {stateChanceOfRain !== undefined
+                    ? `${parseInt(stateChanceOfRain)}%`
                     : " - "}
-                  <span className="forecastContainerDaysTextColored">
-                    {forecastArray[index] &&
-                    forecastArray[index].temp_min !== undefined
-                      ? ` ${parseInt(forecastArray[index].temp_min)}°c`
+                </p>
+              </div>
+            </div>
+
+            <hr className="datailDivisor" />
+
+            {/* Velocidade do vento */}
+            <div className="infoDetails">
+              <div className="infoDetailsInLeft">
+                <div className="imgDetail">
+                  <img src={Wind} alt="Wind" />
+                </div>
+                <p className="textLeft">Velocidade do vento</p>
+              </div>
+              <div className="infoDetailsInRight">
+                <p className="textRight">
+                  {stateWindKm !== undefined ? `${stateWindKm} km/h` : " - "}
+                </p>
+              </div>
+            </div>
+
+            <hr className="datailDivisor" />
+
+            {/* Umidade do ar */}
+            <div className="infoDetails">
+              <div className="infoDetailsInLeft">
+                <div className="imgDetail">
+                  <img src={Drop} alt="Drop" />
+                </div>
+                <p className="textLeft">Umidade do ar</p>
+              </div>
+              <div className="infoDetailsInRight">
+                <p className="textRight">
+                  {!Number.isNaN(parseInt(stateHumidity))
+                    ? `${stateHumidity}%`
+                    : " - "}
+                </p>
+              </div>
+            </div>
+
+            <hr className="datailDivisor" />
+
+            {/* Índice UV */}
+            <div className="infoDetails">
+              <div className="infoDetailsInLeft">
+                <div className="imgDetail">
+                  <img src={Sun} alt="Sun" />
+                </div>
+                <p className="textLeft">Índice UV</p>
+              </div>
+              <div className="infoDetailsInRight">
+                <p className="textRight">
+                  {!Number.isNaN(parseInt(stateUvIndex))
+                    ? `${stateUvIndex}`
+                    : " - "}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Container de previsão do tempo */}
+          <div className="forecastContainer">
+            <div className="forecastContainerTitle">
+              <p>Previsão para {daysToShow} dias</p>
+            </div>
+            <div className="forecastContainerCards">
+              {displayedWeather.map((day, index) => (
+                <div key={index} className="forecastContainerDays">
+                  <p className="forecastContainerDaysTitle">{day}</p>
+                  <div className="forecastContainerImage">
+                    {forecastArray[index] ? (
+                      <img src={forecastArray[index].icon} alt="Weather Icon" />
+                    ) : (
+                      <img
+                        src="https://placehold.co/56x56"
+                        className="imagePlaceholder"
+                        alt="Weather Icon"
+                      />
+                    )}
+                  </div>
+                  <p className="forecastContainerDaysTitle">
+                    {forecastArray[index] && forecastArray[index].main
+                      ? forecastArray[index].main
                       : " - "}
-                  </span>
-                </p>
-              </div>
-            ))}
+                  </p>
+                  <p className="forecastContainerDaysText">
+                    {forecastArray[index] &&
+                      forecastArray[index].temp_max !== undefined
+                      ? `${parseInt(forecastArray[index].temp_max)}°c`
+                      : " - "}
+                    <span className="forecastContainerDaysTextColored">
+                      {forecastArray[index] &&
+                        forecastArray[index].temp_min !== undefined
+                        ? ` ${parseInt(forecastArray[index].temp_min)}°c`
+                        : " - "}
+                    </span>
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </ScrollLock>
   );
 }
 
