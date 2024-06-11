@@ -109,11 +109,7 @@ function Dashboard() {
       .catch((error) => console.error("Error fetching weather data:", error));
 
     fetch(geocoderUrl, {
-      mode: 'no-cors',
-      headers: {
-        'Accept': 'application/json',
-        'Content-type': 'application/json',
-      }, 
+      mode: 'no-cors', 
     })
       .then((response) => response.json())
       .then((dataLocalization) => {
