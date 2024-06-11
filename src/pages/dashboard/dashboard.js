@@ -114,6 +114,7 @@ function Dashboard() {
         if (dataLocalization.length > 0) {
           setCountry(dataLocalization[0].country);
           setCity(dataLocalization[0].name);
+          console.log(dataLocalization[0].name)
         }
       })
       .catch((error) => console.error("Error fetching geocode data:", error));
