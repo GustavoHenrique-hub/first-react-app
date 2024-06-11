@@ -92,8 +92,8 @@ function Dashboard() {
 
   const callApi = () => {
     const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${stateCity}&appid=${key}&units=metric`;
-    const geocoderUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${stateCity}&appid=${key}`;
-    const weatherDetailsUrl = `http://api.weatherapi.com/v1/forecast.json?key=${detailKey}&q=${stateCity}`;
+    const geocoderUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${stateCity}&appid=${key}`;
+    const weatherDetailsUrl = `https://api.weatherapi.com/v1/forecast.json?key=${detailKey}&q=${stateCity}`;
     const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${stateCity}&appid=${key}&units=metric`;
     fetch(weatherUrl)
       .then((response) => response.json())
